@@ -6,11 +6,13 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll",
-        policy => policy.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());    
+{    
+    options.AddPolicy("ProdPolicy", policy =>
+    {
+        policy.WithOrigins("https://sevenmarket7.netlify.app") // Tu URL de Netlify
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
 });
 
 builder.Services.AddControllers();
@@ -35,7 +37,7 @@ var app = builder.Build();
 // });
 //}
 
-app.UseCors("AllowAll");
+app.UseCors("ProdPolicy");
 
 //app.UseHttpsRedirection();
 app.UseAuthorization();
