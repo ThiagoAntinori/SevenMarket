@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "nKjKINTxUgVU1o8WWA3M6qWuwdINz+6SJpgsG322umo=",
+  "Source": "SevenMarket.API",
+  "BasePath": "_content/SevenMarket.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
