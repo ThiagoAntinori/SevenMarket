@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "M/UjNphjxfQ=",
+  "dgSpecHash": "YFuphhxmeS4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\thiag\\Desktop\\PROJECTS\\ASP .NET\\SevenMarket\\SevenMarket.API\\SevenMarket.API.csproj",
+  "projectFilePath": "C:\\Users\\thiag\\Desktop\\PROJECTS\\ASP .NET\\SevenMarket\\SevenMarket\\SevenMarket.API\\SevenMarket.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\thiag\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\thiag\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.10\\microsoft.aspnetcore.openapi.8.0.10.nupkg.sha512",

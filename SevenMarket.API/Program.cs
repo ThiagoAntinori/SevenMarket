@@ -10,23 +10,21 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll",
         policy => policy.AllowAnyOrigin()
                         .AllowAnyMethod()
-                        .AllowAnyHeader());
+                        .AllowAnyHeader());    
 });
 
-// 1. Agregar servicios al contenedor
 builder.Services.AddControllers();
 
-// 2. Configurar la conexión a PostgreSQL (Supabase)
+
 builder.Services.AddDbContext<NeondbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// 3. Configurar Swagger (para probar la API visualmente)
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// 4. Configurar el pipeline de la aplicación
 // if (app.Environment.IsDevelopment())
 // {
 // app.UseSwagger();

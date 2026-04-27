@@ -2,7 +2,6 @@ const API_URL = "http://localhost:5140/api/productos";
 let productos = [];
 let carrito = [];
 
-// 1. Cargar productos desde la API
 async function cargarProductos() {
     try {
         const res = await fetch(API_URL);
@@ -13,7 +12,7 @@ async function cargarProductos() {
     }
 }
 
-// 2. Dibujar productos en pantalla
+
 function renderizarProductos(lista) {
     const contenedor = document.getElementById('lista-productos');
     contenedor.innerHTML = '';
@@ -30,7 +29,6 @@ function renderizarProductos(lista) {
     });
 }
 
-// 3. Manejo del Carrito
 function agregarAlCarrito(producto) {
     const existe = carrito.find(item => item.id === producto.id);
     if (existe) {
@@ -67,7 +65,6 @@ function actualizarInterfaz() {
     totalLabel.innerText = `$${total.toLocaleString('es-AR')}`;
 }
 
-// Nueva función para restar o eliminar
 window.restarDelCarrito = (index) => {
     if (carrito[index].cantidad > 1) {
         carrito[index].cantidad--;
@@ -84,26 +81,21 @@ window.Vaciar = () => {
 }
 
 
-// 4. Buscador
 document.getElementById('buscador').oninput = (e) => {
     const termino = e.target.value.toLowerCase();
     const filtrados = productos.filter(p => p.nombre.toLowerCase().includes(termino));
     renderizarProductos(filtrados);
 };
 
-// Iniciar aplicación
 cargarProductos();
 
-let medioPagoSeleccionado = "Efectivo"; // Por defecto
+let medioPagoSeleccionado = "Efectivo";
 
-// Seleccionar botones
 const botonesPago = document.querySelectorAll('.metodo-pago');
 
 botonesPago.forEach(btn => {
     btn.onclick = () => {
-        // Quitar estilo activo de todos
         botonesPago.forEach(b => b.classList.remove('bg-blue-600', 'text-white', 'border-blue-600'));
-        // Agregar estilo al seleccionado
         btn.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
         medioPagoSeleccionado = btn.getAttribute('data-tipo');
     };
@@ -131,7 +123,7 @@ document.getElementById('btn-cobrar').onclick = async () => {
 
         if (res.ok) {
             alert("¡Venta registrada con éxito!");
-            carrito = []; // Limpiar carrito
+            carrito = [];
             actualizarInterfaz();
         } else {
             const err = await res.json();
@@ -142,7 +134,7 @@ document.getElementById('btn-cobrar').onclick = async () => {
     }
 };
 
-// --- CONFIGURACIÓN Y NAVEGACIÓN ---
+
 const API_BASE = "http://localhost:5140/api";
 
 window.cerrarAdmin = () => {
@@ -155,7 +147,6 @@ document.getElementById('btn-ver-admin').onclick = () => {
     actualizarListasAdmin();
 };
 
-// --- LÓGICA DE PRODUCTOS (ABM) ---
 
 async function actualizarListasAdmin() {
     try {
@@ -205,13 +196,11 @@ async function actualizarListasAdmin() {
 }
 
 window.prepararEdicionAdmin = (id, nombre, precio, idCat) => {
-    // Llenado de campos con prefijo adm-
     document.getElementById('adm-p-id').value = id;
     document.getElementById('adm-p-nombre').value = nombre;
     document.getElementById('adm-p-precio').value = precio;
     document.getElementById('adm-p-categoria').value = idCat;
 
-    // Cambios Visuales
     document.getElementById('adm-titulo-form').innerText = "Editando Producto";
     document.getElementById('adm-indicador').classList.replace('bg-green-500', 'bg-orange-500');
     
@@ -295,8 +284,6 @@ window.eliminarCategoria = async (id) => {
     actualizarListasAdmin();
 };
 
-// --- LÓGICA DE INFORMES ---
-
 window.cargarHistorial = async () => {
     try {
         const res = await fetch(`${API_BASE}/ventas/historial?n=10`);
@@ -331,22 +318,19 @@ window.generarCierreCaja = async () => {
     }
 };
 
-// Modificamos el botón de ver admin para que también cargue esto
 const originalVerAdmin = document.getElementById('btn-ver-admin').onclick;
 document.getElementById('btn-ver-admin').onclick = () => {
     originalVerAdmin();
     cargarHistorial();
-    generarCierreCaja(); // Carga previa de los números de hoy
+    generarCierreCaja();
 };
 
-// Al inicio de main.js
 window.onload = () => {
-    // Verificar si hay sesión activa (solo vive mientras la pestaña está abierta)
     if (sessionStorage.getItem('logueado') !== 'true') {
         document.getElementById('pantalla-login').classList.remove('hidden');
     } else {
         document.getElementById('pantalla-login').classList.add('hidden');
-        cargarProductos(); // Solo carga si está logueado
+        cargarProductos();
     }
 };
 
@@ -356,7 +340,6 @@ window.autenticar = async () => {
     const errorMsg = document.getElementById('login-error');
 
     try {
-        // Consultamos a un nuevo endpoint que crearemos
         const res = await fetch(`${API_BASE}/usuarios/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -377,5 +360,5 @@ window.autenticar = async () => {
 
 window.cerrarSesion = () => {
     sessionStorage.removeItem('logueado');
-    location.reload(); // Esto recarga y vuelve a mostrar el login
+    location.reload();
 };

@@ -15,7 +15,6 @@ public class VentasController : ControllerBase
         _context = context;
     }
 
-    // REGISTRAR UNA VENTA
     [HttpPost]
     public async Task<IActionResult> PostVenta([FromBody] Venta ventaRequest)
     {
@@ -43,17 +42,16 @@ public class VentasController : ControllerBase
         }
     }
 
-    // OBTENER TODAS LAS VENTAS (Para los reportes)
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Venta>>> GetVentas()
     {
         return await _context.Ventas
-            .Include(v => v.VentaDetalles) // Trae también los productos de cada venta
+            .Include(v => v.VentaDetalles)
             .OrderByDescending(v => v.FechaHora)
             .ToListAsync();
     }
 
-        // GET: api/ventas/historial?n=10
+
     [HttpGet("historial")]
     public async Task<ActionResult> GetHistorial([FromQuery] int n = 10)
     {
@@ -70,7 +68,6 @@ public class VentasController : ControllerBase
         return Ok(historial);
     }
 
-    // GET: api/ventas/cierre-diario
     [HttpGet("cierre-diario")]
     public async Task<ActionResult> GetCierreDiario()
     {

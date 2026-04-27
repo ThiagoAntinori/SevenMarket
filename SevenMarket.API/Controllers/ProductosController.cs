@@ -15,14 +15,12 @@ public class ProductosController : ControllerBase
         _context = context;
     }
 
-    // 1. OBTENER TODOS LOS PRODUCTOS
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Producto>>> GetProductos()
     {
         return await _context.Productos.ToListAsync();
     }
 
-    // 2. OBTENER UN PRODUCTO POR ID
     [HttpGet("{id}")]
     public async Task<ActionResult<Producto>> GetProducto(int id)
     {
@@ -31,7 +29,6 @@ public class ProductosController : ControllerBase
         return producto;
     }
 
-    // 3. CREAR UN PRODUCTO (POST)
     [HttpPost]
     public async Task<ActionResult<Producto>> PostProducto(Producto producto)
     {
@@ -40,7 +37,6 @@ public class ProductosController : ControllerBase
         return CreatedAtAction(nameof(GetProducto), new { id = producto.Id }, producto);
     }
 
-    // 4. ACTUALIZAR UN PRODUCTO (PUT)
     [HttpPut("{id}")]
     public async Task<IActionResult> PutProducto(int id, Producto producto)
     {
@@ -50,7 +46,6 @@ public class ProductosController : ControllerBase
         return NoContent();
     }
 
-    // ELIMINAR PRODUCTO
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProducto(int id)
     {

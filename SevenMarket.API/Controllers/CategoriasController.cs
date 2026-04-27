@@ -15,14 +15,12 @@ public class CategoriasController : ControllerBase
         _context = context;
     }
 
-    // GET: api/categorias
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Categoria>>> GetCategorias()
     {
         return await _context.Categorias.OrderBy(c => c.Nombre).ToListAsync();
     }
 
-    // POST: api/categorias (Crear)
     [HttpPost]
     public async Task<ActionResult<Categoria>> PostCategoria(Categoria categoria)
     {
@@ -31,7 +29,6 @@ public class CategoriasController : ControllerBase
         return CreatedAtAction(nameof(GetCategorias), new { id = categoria.Id }, categoria);
     }
 
-    // PUT: api/categorias/5 (Editar)
     [HttpPut("{id}")]
     public async Task<IActionResult> PutCategoria(int id, Categoria categoria)
     {
@@ -41,14 +38,12 @@ public class CategoriasController : ControllerBase
         return NoContent();
     }
 
-    // DELETE: api/categorias/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteCategoria(int id)
     {
         var categoria = await _context.Categorias.FindAsync(id);
         if (categoria == null) return NotFound();
 
-        // Verificamos si tiene productos antes de borrar
         var tieneProductos = await _context.Productos.AnyAsync(p => p.IdCategoria == id);
         if (tieneProductos) return BadRequest(new { mensaje = "No se puede eliminar una categoría que tiene productos asociados." });
 

@@ -26,7 +26,7 @@ public partial class NeondbContext : DbContext
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+
         => optionsBuilder.UseNpgsql("Host=ep-sweet-union-acjni76j.sa-east-1.aws.neon.tech; Database=neondb; Username=neondb_owner; Password=npg_TkCH7prS3iPx; SSL Mode=VerifyFull; Channel Binding=Require;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\thiag\\Desktop\\PROJECTS\\ASP .NET\\SevenMarket\\SevenMarket.API\\SevenMarket.API.csproj": {}
+    "C:\\Users\\thiag\\Desktop\\PROJECTS\\ASP .NET\\SevenMarket\\SevenMarket\\SevenMarket.API\\SevenMarket.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\thiag\\Desktop\\PROJECTS\\ASP .NET\\SevenMarket\\SevenMarket.API\\SevenMarket.API.csproj": {
+    "C:\\Users\\thiag\\Desktop\\PROJECTS\\ASP .NET\\SevenMarket\\SevenMarket\\SevenMarket.API\\SevenMarket.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thiag\\Desktop\\PROJECTS\\ASP .NET\\SevenMarket\\SevenMarket.API\\SevenMarket.API.csproj",
+        "projectUniqueName": "C:\\Users\\thiag\\Desktop\\PROJECTS\\ASP .NET\\SevenMarket\\SevenMarket\\SevenMarket.API\\SevenMarket.API.csproj",
         "projectName": "SevenMarket.API",
-        "projectPath": "C:\\Users\\thiag\\Desktop\\PROJECTS\\ASP .NET\\SevenMarket\\SevenMarket.API\\SevenMarket.API.csproj",
+        "projectPath": "C:\\Users\\thiag\\Desktop\\PROJECTS\\ASP .NET\\SevenMarket\\SevenMarket\\SevenMarket.API\\SevenMarket.API.csproj",
         "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thiag\\Desktop\\PROJECTS\\ASP .NET\\SevenMarket\\SevenMarket.API\\obj\\",
+        "outputPath": "C:\\Users\\thiag\\Desktop\\PROJECTS\\ASP .NET\\SevenMarket\\SevenMarket\\SevenMarket.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\thiag\\AppData\\Roaming\\NuGet\\NuGet.Config",
