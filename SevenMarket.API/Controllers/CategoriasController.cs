@@ -47,7 +47,8 @@ public class CategoriasController : ControllerBase
         var tieneProductos = await _context.Productos.AnyAsync(p => p.IdCategoria == id);
         if (tieneProductos) return BadRequest(new { mensaje = "No se puede eliminar una categoría que tiene productos asociados." });
 
-        _context.Categorias.Remove(categoria);
+        categoria.Activo = false;
+        _context.Entry(categoria).State = EntityState.Modified;
         await _context.SaveChangesAsync();
         return NoContent();
     }

@@ -51,7 +51,8 @@ public class ProductosController : ControllerBase
     {
         var producto = await _context.Productos.FindAsync(id);
         if (producto == null) return NotFound();
-        _context.Productos.Remove(producto);
+        producto.Activo = false;
+        _context.Entry(producto).State = EntityState.Modified;
         await _context.SaveChangesAsync();
         return NoContent();
     }

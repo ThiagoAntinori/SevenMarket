@@ -1,10 +1,10 @@
-const API_URL = "https://sevenmarket-api.onrender.com/api/productos";
+const API_BASE = "http://localhost:5140/api";
 let productos = [];
 let carrito = [];
 
 async function cargarProductos() {
     try {
-        const res = await fetch(API_URL);
+        const res = await fetch(`${API_BASE}/productos`);
         productos = await res.json();
         renderizarProductos(productos);
     } catch (error) {
@@ -115,7 +115,7 @@ document.getElementById('btn-cobrar').onclick = async () => {
     };
 
     try {
-        const res = await fetch("https://sevenmarket-api.onrender.com/api/ventas", {
+        const res = await fetch(`${API_BASE}/ventas`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(venta)
@@ -135,7 +135,6 @@ document.getElementById('btn-cobrar').onclick = async () => {
 };
 
 
-const API_BASE = "https://sevenmarket-api.onrender.com/api";
 
 window.cerrarAdmin = () => {
     document.getElementById('seccion-admin').classList.add('hidden');

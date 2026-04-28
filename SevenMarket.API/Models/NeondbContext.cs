@@ -39,6 +39,7 @@ public partial class NeondbContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Nombre).HasColumnName("nombre");
+            entity.Property(e => e.Activo).HasColumnName("activo");
         });
 
         modelBuilder.Entity<Producto>(entity =>
@@ -53,6 +54,7 @@ public partial class NeondbContext : DbContext
             entity.Property(e => e.Precio)
                 .HasPrecision(10, 2)
                 .HasColumnName("precio");
+            entity.Property(e => e.Activo).HasColumnName("activo");
 
             entity.HasOne(d => d.IdCategoriaNavigation).WithMany(p => p.Productos)
                 .HasForeignKey(d => d.IdCategoria)
@@ -73,6 +75,7 @@ public partial class NeondbContext : DbContext
             entity.Property(e => e.Total)
                 .HasPrecision(10, 2)
                 .HasColumnName("total");
+            entity.Property(e => e.Activo).HasColumnName("activo");
         });
 
         modelBuilder.Entity<VentaDetalle>(entity =>
@@ -118,7 +121,21 @@ public partial class NeondbContext : DbContext
                 .HasMaxLength(20)
                 .HasColumnName("rol")
                 .HasDefaultValue("admin");
+            
+            entity.Property(e => e.Activo).HasColumnName("activo");
         });
+
+        modelBuilder.Entity<Producto>()
+            .HasQueryFilter(p => p.Activo);
+        
+        modelBuilder.Entity<Categoria>()
+            .HasQueryFilter(c => c.Activo);
+
+        modelBuilder.Entity<Usuario>()
+            .HasQueryFilter(u => u.Activo);
+
+        modelBuilder.Entity<Venta>()
+            .HasQueryFilter(v => v.Activo);
 
         OnModelCreatingPartial(modelBuilder);
     }

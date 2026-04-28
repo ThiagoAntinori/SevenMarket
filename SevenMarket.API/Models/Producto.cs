@@ -13,6 +13,8 @@ public partial class Producto
 
     public int? IdCategoria { get; set; }
 
+    public bool Activo { get; set; }
+
     public virtual Categoria? IdCategoriaNavigation { get; set; }
 
     public virtual ICollection<VentaDetalle> VentaDetalles { get; set; } = new List<VentaDetalle>();

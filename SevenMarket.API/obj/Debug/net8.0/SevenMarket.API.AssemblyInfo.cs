@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SevenMarket.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+67bd1abb1796cace1e63f79b836b2b9dfa9b675f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f202eb7a2b7d86df249d0c05632aa22cbcd8bf2b")]
 [assembly: System.Reflection.AssemblyProductAttribute("SevenMarket.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SevenMarket.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
