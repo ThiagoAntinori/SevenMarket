@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:5140/api";
+const API_BASE = "https://sevenmarket-api.onrender.com/api";
 let productos = [];
 let carrito = [];
 
