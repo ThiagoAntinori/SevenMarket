@@ -9,7 +9,7 @@ public partial class Categoria
 
     public string Nombre { get; set; } = null!;
 
-    public bool Activo { get; set; }
+    public bool Activo { get; set; } = true;
 
     public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();
 }

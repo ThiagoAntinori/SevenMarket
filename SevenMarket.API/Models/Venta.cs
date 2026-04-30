@@ -17,7 +17,7 @@ public partial class Venta
 
     public string MetodoPago { get; set; } = null!;
 
-    public bool Activo { get; set; }
+    public bool Activo { get; set; } = true;
 
     public virtual ICollection<VentaDetalle> VentaDetalles { get; set; } = new List<VentaDetalle>();
 }

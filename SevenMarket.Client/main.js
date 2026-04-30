@@ -232,6 +232,7 @@ window.ejecutarGuardarProducto = async () => {
         nombre: document.getElementById('adm-p-nombre').value,
         precio: parseFloat(document.getElementById('adm-p-precio').value),
         idCategoria: parseInt(document.getElementById('adm-p-categoria').value)
+        
     };
 
     if (!producto.nombre || isNaN(producto.precio)) return alert("Completa los datos correctamente");

@@ -13,7 +13,7 @@ public partial class Producto
 
     public int? IdCategoria { get; set; }
 
-    public bool Activo { get; set; }
+    public bool Activo { get; set; } = true;
 
     public virtual Categoria? IdCategoriaNavigation { get; set; }
 

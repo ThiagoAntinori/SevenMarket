@@ -16,5 +16,5 @@ public class Usuario
 
     public string? Rol { get; set; }
 
-    public bool Activo { get; set; }
+    public bool Activo { get; set; } = true;
 }
