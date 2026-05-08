@@ -71,17 +71,33 @@ public class VentasController : ControllerBase
     [HttpGet("cierre-diario")]
     public async Task<ActionResult> GetCierreDiario()
     {
-        var hoy = DateTime.Today;
+        var hoy = DateTime.UtcNow.Date;
+
         var ventasHoy = await _context.Ventas
-            .Where(v => v.FechaHora >= hoy)
+            .Where(v => v.FechaHora >= hoy && v.Activo)
+            .Include(v => v.VentaDetalles)
+                .ThenInclude(d => d.IdProductoNavigation)
+                    .ThenInclude(p => p.IdCategoriaNavigation)
             .ToListAsync();
+
+        var desgloseCategorias = ventasHoy
+            .SelectMany(v => v.VentaDetalles)
+            .GroupBy(d => d.IdProductoNavigation.IdCategoriaNavigation.Nombre)
+            .Select(g => new {
+                Categoria = g.Key,
+                Total = g.Sum(d => d.PrecioUnitarioMomento * d.Cantidad),
+                Cantidad = g.Sum(d => d.Cantidad)
+            })
+            .OrderByDescending(x => x.Total)
+            .ToList();
 
         var informe = new {
             Fecha = hoy,
             TotalEfectivo = ventasHoy.Where(v => v.MetodoPago == "Efectivo").Sum(v => v.Total),
             TotalMercadoPago = ventasHoy.Where(v => v.MetodoPago == "Mercado Pago").Sum(v => v.Total),
             CantidadVentas = ventasHoy.Count,
-            TotalGeneral = ventasHoy.Sum(v => v.Total)
+            TotalGeneral = ventasHoy.Sum(v => v.Total),
+            Categorias = desgloseCategorias
         };
 
         return Ok(informe);

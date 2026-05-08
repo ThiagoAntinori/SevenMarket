@@ -311,7 +311,13 @@ window.generarCierreCaja = async () => {
         document.getElementById('cierre-efectivo').innerText = `$${d.totalEfectivo.toLocaleString('es-AR')}`;
         document.getElementById('cierre-mp').innerText = `$${d.totalMercadoPago.toLocaleString('es-AR')}`;
         document.getElementById('cierre-total').innerText = `$${d.totalGeneral.toLocaleString('es-AR')}`;
-
+        const listaCategorias = document.getElementById('cierre-desglose-categorias');
+        listaCategorias.innerHTML = d.categorias.map(cat => `
+            <div class="flex justify-between text-sm ${cat.categoria === 'Cigarrillos' ? 'text-red-600 font-bold' : 'text-slate-600'}">
+            <span>${cat.categoria}:</span>
+            <span>$${cat.total.toLocaleString('es-AR')}</span>
+            </div>
+        `).join('');
         alert(`Cierre realizado:\nTotal Ventas: ${d.cantidadVentas}\nRecaudado: $${d.totalGeneral}`);
     } catch (e) { 
         alert("Error al obtener el cierre diario");
